@@ -1,0 +1,1 @@
+//= require ./jquery.bootstrap.ajaxtabs.js
