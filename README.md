@@ -20,7 +20,7 @@ You have to require the gem JS file in your application.js
 ### Include the CSS
 A minor SASS file is included that adds a default loading animation to requests. To use this, require the file in your application.scss
 
-	*= require  require rails_jquery_bootstrap_ajaxtabs
+	*= require rails_jquery_bootstrap_ajaxtabs
 
 If you would prefer to use your own, add CSS styling to `div.tab-pane.tab-loading` - a centered background animation and a minimum height are recommended.
 
