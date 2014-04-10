@@ -1,20 +1,20 @@
 $(document).ready(function(){
 	
-	// Adds a tab-loading class to tabs that will load via AJAX
-	$('a[data-toggle="tab"][tab-data-src][href]').each(function() {
-		$("div"+$(this).attr("href")+".tab-pane").addClass("tab-loading");
-	});
-	
 	// Any tab with a tab-data-src will do an AJAX load on that URL for the tab content
-	$('a[data-toggle="tab"]').on('shown', function (e) {
+	$(document).on('shown', 'a[data-toggle="tab"]', function (e) {
 		var tab = $(e.target);
+		var tab_content = $(tab.attr('href'))
+
 		if(history.pushState) history.pushState(null, null, window.location.pathname+tab.attr('href'))
 		if(tab.attr("tab-data-src") != "") {
-			$(tab.attr('href')).load(tab.attr("tab-data-src"),function() {
-				// Remove the source attribute, so the tab content is only loaded once
-				tab.removeAttr("tab-data-src");
-				$(this).removeClass("tab-loading");
-			});
+			if(!tab_content.hasClass('tab-loading')) {
+				tab_content.addClass("tab-loading");
+				tab_content.load(tab.attr("tab-data-src"),function() {
+					// Remove the source attribute, so the tab content is only loaded once
+					tab.removeAttr("tab-data-src");
+					tab_content.removeClass("tab-loading");
+				});
+			}
 		}
 	});
 
