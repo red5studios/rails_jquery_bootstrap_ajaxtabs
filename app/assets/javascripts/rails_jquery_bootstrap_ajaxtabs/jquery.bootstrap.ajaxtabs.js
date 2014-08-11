@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	// Any tab with a tab-data-src will do an AJAX load on that URL for the tab content
-	$(document).on('shown', 'a[data-toggle="tab"]', function (e) {
+	$(document).on('shown', 'a[data-toggle="tab"][tab-data-src]', function (e) {
 		var tab = $(e.target);
 		var tab_content = $(tab.attr('href'))
 
@@ -12,7 +12,8 @@ $(document).ready(function(){
 				tab_content.load(tab.attr("tab-data-src"),function() {
 					// Remove the source attribute, so the tab content is only loaded once
 					tab.removeAttr("tab-data-src");
-					tab_content.removeClass("tab-loading");
+					$('.tab-loading').removeClass("tab-loading");
+					tab_content.find('li.active a[data-toggle="tab"][tab-data-src]').trigger('shown');
 				});
 			}
 		}
