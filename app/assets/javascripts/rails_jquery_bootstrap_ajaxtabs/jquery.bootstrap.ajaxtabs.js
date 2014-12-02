@@ -6,7 +6,7 @@ $(document).ready(function(){
 		var tab_content = $(tab.attr('href'))
 
 		if(history.pushState) history.pushState(null, null, window.location.pathname+tab.attr('href'))
-		if(tab.attr("tab-data-src") != "") {
+		if(tab.attr("tab-data-src") !== undefined && tab.attr("tab-data-src") != "") {
 			if(!tab_content.hasClass('tab-loading')) {
 				tab_content.addClass("tab-loading");
 				tab_content.load(tab.attr("tab-data-src"),function() {
